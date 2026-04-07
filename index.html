@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script ejecutable</title>
+  </head>
+  <body>
+    <h1>Programa creado con Bash!</h1>
+    <p>Pincha el botón!</p>
+    <button onclick="runScript()">Pruébalo"</button>
+    <script>
+      function runScript() {
+        fetch('five.sh')
+          .then(response => response.text())
+          .then(data => console.log(data))
+          .catch(error => console.error('Error:', error));
+      }
+    </script>
+  </body>
+</html>
