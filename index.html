@@ -8,14 +8,30 @@
   <body>
     <h1>Programa creado con Bash!</h1>
     <p>Pincha el botón!</p>
-    <button onclick="runScript()">Pruébalo"</button>
-    <script>
-      function runScript() {
-        fetch('five.sh')
-          .then(response => response.text())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error:', error));
+    <pre><code class="language-bash">
+      #!/bin/bash
+      # Program to tell a persons fortune
+      echo -e "\n ~~ Fortune Teller ~~ \n"
+      RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+      
+      N=$(( RANDOM % 5 ))
+      function GET_FORTUNE() {
+        if [[ ! $1 ]]
+        then
+          echo ask a yes or no question:
+        else
+          echo Try again. Make sure it ends with a question mark:
+        fi
+      
+        read QUESTION
       }
+      GET_FORTUNE
+      until [[ $QUESTION =~ \?$ ]]
+      do
+        GET_FORTUNE again
+      done
+      echo -e "\n ${RESPONSES[$N]}"
+    </code></pre>
     </script>
   </body>
 </html>
